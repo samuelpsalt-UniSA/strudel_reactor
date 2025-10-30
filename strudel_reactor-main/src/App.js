@@ -116,14 +116,14 @@ return (
         <main>
 
             <div className="container-fluid">
+                <ProcButtons />
+                <PlayButtons />
                 <div className="row">
                     <ProcessTextInput/>
                     <div className="col-md-4">
 
                         <nav>
-                            <ProcButtons />
-                            <br />
-                            <PlayButtons />
+
                         </nav>
                     </div>
                 </div>
