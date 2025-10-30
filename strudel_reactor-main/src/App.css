@@ -1,5 +1,15 @@
 .App {
   text-align: center;
+    background-color: gray;
+
+}
+
+.App-h2{
+    color:white;
+}
+
+.textToStyle{
+    color:white;
 }
 
 .App-logo {
@@ -13,9 +23,7 @@
   }
 }
 
-.h2{
-    text-align: center;
-}
+
 
 
 .App-header {
