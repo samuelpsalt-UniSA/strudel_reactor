@@ -139,6 +139,7 @@ export default function StrudelDemo() {
                         </div>
                     </div>
                 </div>
+                <p>DO WE COMMIT</p>
                 <canvas id="roll"></canvas>
             </main >
         </div >
