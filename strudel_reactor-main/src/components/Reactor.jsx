@@ -15,6 +15,8 @@ export default function Reactor() {
     let globalEditor = null;
 
     const [globalEditorState, setGlobalEditorState] = useState(null);
+didd this ewfisdnerfjdgndszfojxv commit
+
 
 
     const handleD3Data = (event) => {
@@ -42,10 +44,6 @@ export default function Reactor() {
     }
 
       function StrudelDemo() {
-
-      const canvasRef = useRef(null);
-      const editorRootRef = useRef(null);
-      const procRef = useRef(null);
 
         const hasRun = useRef(false);
 
