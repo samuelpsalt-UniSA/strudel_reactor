@@ -76,6 +76,9 @@ function StrudelReactor({ ourPlayButton, ourStopButton }){
 
     return (
         <>
+            <ComponentNavBar
+            title={"Strudel Editor"}
+            />
             <div id="editor" ref={ourEditorRoot} />
         </>
     )
