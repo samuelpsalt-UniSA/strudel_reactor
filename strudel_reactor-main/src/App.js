@@ -11,10 +11,12 @@ import { stranger_tune } from './tunes';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import procButtons from "./components/ProcButtons";
 import playButtons from "./components/PlayButtons";
-import DJControls from "./components/DJControls";
-import PlayButtons from "./components/PlayButtons";
-import ProcButtons from "./components/ProcButtons";
+import SystemNavBar from "./components/SystemNavBar";
+import StrudelReactor from "./components/StrudelReactor";
+import EmbedStrudel from "./components/EmbedStrudel";
 
+
+/*
 let globalEditor = null;
 
 const handleD3Data = (event) => {
@@ -69,6 +71,7 @@ export function ProcessText(match, ...args) {
 export default function StrudelDemo() {
 
     const hasRun = useRef(false);
+    const ourCanvas = useRef();
 
     useEffect(() => {
 
@@ -78,7 +81,7 @@ export default function StrudelDemo() {
             hasRun.current = true;
             //Code copied from example: https://codeberg.org/uzu/strudel/src/branch/main/examples/codemirror-repl
             //init canvas
-            const canvas = document.getElementById('roll');
+            const canvas = ourCanvas.current;
             canvas.width = canvas.width * 2;
             canvas.height = canvas.height * 2;
             const drawContext = canvas.getContext('2d');
@@ -109,41 +112,47 @@ export default function StrudelDemo() {
         }
 
     }, []);
+*/
+
+function App() {
+    const playButtonRef = useRef(null);
+    const stopButtonRef = useRef(null);
 
 
     return (
-        <div>
-            <h2>Strudel Demo</h2>
-            <main>
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                            <label htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess:</label>
-                            <textarea className="form-control" rows="15" id="proc" ></textarea>
+        <>
+            <div>
+                <SystemNavBar
+                    ourPlayButton={playButtonRef}
+                    ourStopButton={stopButtonRef}
+                />
+                <main>
+                    <div className="container-fluid">
+                        <div className="row">
+
+                            <div className="col-md-4">
+
+                            </div>
                         </div>
-                        <div className="col-md-4">
-                            <nav>
-                                <ProcButtons />
-                                <br />
-                                <PlayButtons />
-                            </nav>
+                        <div className="row">
+                                <StrudelReactor
+                                    ourPlayButton={playButtonRef}
+                                    ourStopButton={stopButtonRef}/>
+                            <div className="col-md-4">
+
+                            </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                            <div id="editor" />
-                            <div id="output" />
-                        </div>
-                        <div className="col-md-4">
-                            <DJControls />
-                        </div>
-                    </div>
-                </div>
-                <p>DO WE COMMIT</p>
-                <canvas id="roll"></canvas>
-            </main >
-        </div >
-    );
 
-
+                </main >
+            </div >
+        </>
+    )
 }
+
+export default App;
+
+
+
+
+

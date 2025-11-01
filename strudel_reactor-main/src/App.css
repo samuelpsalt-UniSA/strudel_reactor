@@ -8,14 +8,83 @@
     color:white;
 }
 
+body{
+    background-image: url("./resources/bg-image.jpg"); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Ensure the body covers the full viewport height */
+    margin: 0;
+}
+
 .textToStyle{
     color:white;
+}
+
+.playButtonDiv{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.strudelComponent{
+    width: 65vw;
+    height: 40vh;
+    overflow-y: auto;
+
+}
+
+.componentNav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+}
+
+.componentNavItem{
+    color: white;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
+.sticky-button{
+   margin-right: 2em;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    color: white;
+    cursor: pointer;
+
+    /* Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent white background */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Subtle shadow */
+    backdrop-filter: blur(10px); /* Blur the background behind the button */
+    -webkit-backdrop-filter: blur(10px); /* For Safari compatibility */
+    border: 1px solid rgba(255, 255, 255, 0.18); /* Light, transparent border */
+
+    /* Optional: Hover effect */
+    transition: background 0.3s ease;
+}
+
+/*
+.sticky-button-right{
+    position: fixed;
+    z-index: 1000; /* Ensure it stays on top of other content
+    right: 200px;
+}
+
+*/
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -39,6 +108,19 @@
 
 .App-link {
   color: #61dafb;
+}
+
+nav{
+
+    background: rgba(255, 255, 255, 0.13);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.navH2{
+    color: white;
 }
 
 @keyframes App-logo-spin {

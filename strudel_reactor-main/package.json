@@ -6,6 +6,7 @@
     "@strudel/codemirror": "^1.2.5",
     "@strudel/core": "^1.2.4",
     "@strudel/draw": "^1.2.4",
+    "@strudel/embed": "^1.1.1",
     "@strudel/mini": "^1.2.4",
     "@strudel/soundfonts": "^1.2.5",
     "@strudel/tonal": "^1.2.4",

@@ -1,8 +1,13 @@
-function PlayButtons() {
+function PlayButtons(props) {
+    const { playRef, stopRef } = props;
+
     return (
         <>
-            <button id="play" className="btn btn-outline-primary">Play</button>
-            <button id="stop" className="btn btn-outline-primary">Stop</button>
+            <div>
+                <button className="sticky-button" ref={playRef} id="play">Play</button>
+                <button className="sticky-button" ref={stopRef} id="stop">Stop</button>
+            </div>
+
         </>
     )
 }
