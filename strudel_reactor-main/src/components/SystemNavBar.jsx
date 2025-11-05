@@ -12,11 +12,18 @@ const handleStrudel = (e) =>{
 };
 */
 
-export default function SystemNavBar({ourPlayButton, ourStopButton}){
+export default function SystemNavBar({ourPlayButton, ourStopButton, onToggleEditor, isEditorVisible}){
+
+    const buttonText = isEditorVisible ? "Hide Editor" : "Show Editor";
+
     return(
         <nav className="systemNavBar">
             <h1 className="navH2" >Strudel Demo</h1>
-            <button className="sticky-button">Show Editor</button>
+            <button
+                className="sticky-button"
+                onClick={onToggleEditor}>
+                {buttonText}
+            </button>
             <PlayButtons playRef={ourPlayButton} stopRef={ourStopButton} />
         </nav>
     )

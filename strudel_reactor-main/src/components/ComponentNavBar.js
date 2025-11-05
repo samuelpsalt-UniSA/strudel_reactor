@@ -1,10 +1,15 @@
 
 
-function ComponentNavBar({title}) {
+function ComponentNavBar({title, onToggleEditor}) {
+
+
     return (
         <nav className="componentNav">
             <p className="componentNavItem">{title}</p>
-            <button className="componentNavButton">Close X</button>
+            <button
+                className="componentNavButton"
+                onClick={onToggleEditor}
+            >Close ❌</button>
         </nav>
     )
 }

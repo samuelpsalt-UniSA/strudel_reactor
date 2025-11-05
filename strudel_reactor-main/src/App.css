@@ -4,6 +4,13 @@
 
 }
 
+.hidden {
+    opacity: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+}
+
 .App-h2{
     color:white;
 }
@@ -26,11 +33,19 @@ body{
 }
 
 .strudelWrapper{
-    display: none;
+    opacity: 1;
+    max-height: 200vw;
+    visibility: visible;
+
+
+    transition:
+            opacity 0.3s ease-in,
+            max-height 0.5s ease-in-out,
+            visibility 0.5s;
+
     position: absolute;
     top: 5%;
     left: 7%;
-    //transform: translate(-50%, -50%);
     z-index: 11;
 
 

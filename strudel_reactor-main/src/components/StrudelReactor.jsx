@@ -15,7 +15,7 @@ import SystemNavBar from "./SystemNavBar";
 import ComponentNavBar from "./ComponentNavBar";
 
 
-function StrudelReactor({ ourPlayButton, ourStopButton }){
+function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor}){
     //const ourCanvas = useRef();
     const ourEditorRoot = useRef();
     const editorRef = useRef(null);
@@ -73,12 +73,16 @@ function StrudelReactor({ ourPlayButton, ourStopButton }){
 
     }, [ourPlayButton, ourStopButton]);
 
+    const wrapperClass = `strudelWrapper ${isVisible ? '' : 'hidden'}`;
+
 
     return (
         <>
-            <div className="strudelWrapper">
+            <div className={wrapperClass}>
                 <ComponentNavBar
-                title={"Strudel Editor"}
+                    title={"Strudel Editor"}
+                    onToggleEditor={onToggleEditor}
+                    isEditorVisible={isVisible}
                 />
                 <div id="editor" ref={ourEditorRoot} className="strudelComponent"/>
             </div>

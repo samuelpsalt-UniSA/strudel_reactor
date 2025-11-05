@@ -21,12 +21,20 @@ function App() {
     const playButtonRef = useRef(null);
     const stopButtonRef = useRef(null);
 
-    const [strudelVisible, setstrudelVisible] = useState(true);
+    const [isEditorVisible, setstrudelVisible] = useState(true);
 
+
+    const toggleEditorVisibility = () => {
+        setstrudelVisible(prev => !prev);
+    };
+
+    /*
     const handleStrudel = (e) =>{
         e.stopPropagation();
         setstrudelVisible(true);
     };
+    */
+
 
 
     return (
@@ -35,6 +43,8 @@ function App() {
                 <SystemNavBar
                     ourPlayButton={playButtonRef}
                     ourStopButton={stopButtonRef}
+                    onToggleEditor={toggleEditorVisibility}
+                    isEditorVisible={isEditorVisible}
                 />
                 <main>
                     <div className="container-fluid">
@@ -45,9 +55,12 @@ function App() {
                             </div>
                         </div>
                         <div className="row">
-                            { strudelVisible && <StrudelReactor
-                                    ourPlayButton={playButtonRef}
-                                    ourStopButton={stopButtonRef}/>}
+                            <StrudelReactor
+                                ourPlayButton={playButtonRef}
+                                ourStopButton={stopButtonRef}
+                                isVisible={isEditorVisible}
+                                onToggleEditor={toggleEditorVisibility}
+                            />
 
                             <div className="col-md-4">
 
