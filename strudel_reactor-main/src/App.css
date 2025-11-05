@@ -9,10 +9,10 @@
 }
 
 body{
-    background-image: url("./resources/bg-image.jpg"); /* Replace with your image path */
+    background-image: url("./resources/bg-image.jpg");
     background-size: cover;
     background-position: center;
-    height: 100vh; /* Ensure the body covers the full viewport height */
+    height: 100vh;
     margin: 0;
 }
 
@@ -25,20 +25,46 @@ body{
     justify-content: space-between;
 }
 
+.strudelWrapper{
+    display: none;
+    position: absolute;
+    top: 5%;
+    left: 7%;
+    //transform: translate(-50%, -50%);
+    z-index: 11;
+
+
+
+}
+
+.componentNavButton {
+    margin-right: 2em;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 
 .strudelComponent{
-    width: 65vw;
-    height: 40vh;
+    height: 80vh;
     overflow-y: auto;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 
 }
 
 .systemNavBar{
-    position: sticky;
-    top: 0;
+    position: fixed;
+
+    left: 1%;
+    right: 1%;
     display: flex;
     justify-content: space-between;
-    z-index: 10
+    z-index: 10;
+    border-radius: 25px;
+    margin-top: 1em;
 
 }
 
@@ -51,11 +77,14 @@ body{
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 
 }
 
 .componentNavItem{
     color: white;
+    margin-left: 2em;
 }
 
 .App-logo {
@@ -73,12 +102,12 @@ body{
     color: white;
     cursor: pointer;
 
-    /* Glassmorphism effect */
-    background: rgba(255, 255, 255, 0.15); /* Semi-transparent white background */
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Subtle shadow */
-    backdrop-filter: blur(10px); /* Blur the background behind the button */
-    -webkit-backdrop-filter: blur(10px); /* For Safari compatibility */
-    border: 1px solid rgba(255, 255, 255, 0.18); /* Light, transparent border */
+
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 
     /* Optional: Hover effect */
     transition: background 0.3s ease;

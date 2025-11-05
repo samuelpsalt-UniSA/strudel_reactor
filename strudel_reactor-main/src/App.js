@@ -14,109 +14,19 @@ import playButtons from "./components/PlayButtons";
 import SystemNavBar from "./components/SystemNavBar";
 import StrudelReactor from "./components/StrudelReactor";
 import EmbedStrudel from "./components/EmbedStrudel";
+import {useState} from "react";
 
-
-/*
-let globalEditor = null;
-
-const handleD3Data = (event) => {
-    console.log(event.detail);
-};
-
-export function SetupButtons() {
-
-    document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
-    document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
-    document.getElementById('process').addEventListener('click', () => {
-            Proc()
-        }
-    )
-    document.getElementById('process_play').addEventListener('click', () => {
-            if (globalEditor != null) {
-                Proc()
-                globalEditor.evaluate()
-            }
-        }
-    )
-}
-
-
-
-export function ProcAndPlay() {
-    if (globalEditor != null && globalEditor.repl.state.started == true) {
-        console.log(globalEditor)
-        Proc()
-        globalEditor.evaluate();
-    }
-}
-
-export function Proc() {
-
-    let proc_text = document.getElementById('proc').value
-    let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText);
-    ProcessText(proc_text);
-    globalEditor.setCode(proc_text_replaced)
-}
-
-export function ProcessText(match, ...args) {
-
-    let replace = ""
-    if (document.getElementById('flexRadioDefault2').checked) {
-        replace = "_"
-    }
-
-    return replace
-}
-
-export default function StrudelDemo() {
-
-    const hasRun = useRef(false);
-    const ourCanvas = useRef();
-
-    useEffect(() => {
-
-        if (!hasRun.current) {
-            document.addEventListener("d3Data", handleD3Data);
-            console_monkey_patch();
-            hasRun.current = true;
-            //Code copied from example: https://codeberg.org/uzu/strudel/src/branch/main/examples/codemirror-repl
-            //init canvas
-            const canvas = ourCanvas.current;
-            canvas.width = canvas.width * 2;
-            canvas.height = canvas.height * 2;
-            const drawContext = canvas.getContext('2d');
-            const drawTime = [-2, 2]; // time window of drawn haps
-            globalEditor = new StrudelMirror({
-                defaultOutput: webaudioOutput,
-                getTime: () => getAudioContext().currentTime,
-                transpiler,
-                root: document.getElementById('editor'),
-                drawTime,
-                onDraw: (haps, time) => drawPianoroll({ haps, time, ctx: drawContext, drawTime, fold: 0 }),
-                prebake: async () => {
-                    initAudioOnFirstClick(); // needed to make the browser happy (don't await this here..)
-                    const loadModules = evalScope(
-                        import('@strudel/core'),
-                        import('@strudel/draw'),
-                        import('@strudel/mini'),
-                        import('@strudel/tonal'),
-                        import('@strudel/webaudio'),
-                    );
-                    await Promise.all([loadModules, registerSynthSounds(), registerSoundfonts()]);
-                },
-            });
-
-            document.getElementById('proc').value = stranger_tune
-            SetupButtons()
-            Proc()
-        }
-
-    }, []);
-*/
 
 function App() {
     const playButtonRef = useRef(null);
     const stopButtonRef = useRef(null);
+
+    const [strudelVisible, setstrudelVisible] = useState(true);
+
+    const handleStrudel = (e) =>{
+        e.stopPropagation();
+        setstrudelVisible(true);
+    };
 
 
     return (
@@ -135,9 +45,10 @@ function App() {
                             </div>
                         </div>
                         <div className="row">
-                                <StrudelReactor
+                            { strudelVisible && <StrudelReactor
                                     ourPlayButton={playButtonRef}
-                                    ourStopButton={stopButtonRef}/>
+                                    ourStopButton={stopButtonRef}/>}
+
                             <div className="col-md-4">
 
                             </div>

@@ -76,10 +76,12 @@ function StrudelReactor({ ourPlayButton, ourStopButton }){
 
     return (
         <>
-            <ComponentNavBar
-            title={"Strudel Editor"}
-            />
-            <div id="editor" ref={ourEditorRoot} />
+            <div className="strudelWrapper">
+                <ComponentNavBar
+                title={"Strudel Editor"}
+                />
+                <div id="editor" ref={ourEditorRoot} className="strudelComponent"/>
+            </div>
         </>
     )
 }
