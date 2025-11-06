@@ -11,7 +11,8 @@ import ComponentNavBar from "./ComponentNavBar";
 
 
 
-function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor, onImportTriggerReady, onExportTriggerReady}){
+function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor, onImportTriggerReady,
+onExportTriggerReady}){
     //const ourCanvas = useRef();
     const ourEditorRoot = useRef();
     const editorRef = useRef(null);
@@ -44,7 +45,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
 */
         // to reload when importing new song input, also stops Codemirror duplicating for some reason
-        editorRoot.innerHTML = '';
+         editorRoot.innerHTML = '';
 
          const editor = new StrudelMirror({
             defaultOutput: webaudioOutput,
@@ -72,8 +73,6 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
         editorRef.current = editor;
 
 
-
-
         const handlePlay = () => editor.evaluate();
         console.log(editor.code);
         const handleStop = () => editor.stop();
@@ -92,8 +91,6 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
                 editorRef.current.evaluate();
             }
 
-
-
         }
     }, [currentTune]);
 
@@ -101,12 +98,14 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
     useEffect(() => {
         if (onImportTriggerReady) {
             onImportTriggerReady(() => triggerFileInput);
+
         }
         if (onExportTriggerReady) {
             onExportTriggerReady(() => handleFileExport);
         }
 
     }, []);
+
 
 
     const triggerFileInput = () => {
@@ -125,6 +124,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
                 console.log('tune load');
                 setCurrentTune(text);
                 setImportPlay(true);
+                console.log(importPlay);
             } else {
                 console.error('error');
             }
@@ -134,18 +134,17 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
     const handleFileExport = () => {
         const result = currentTune;
-        const customUserText = prompt("Name Your Strudel Script");
+        const customUserText = prompt("Name Your File")
         const blob = new Blob([currentTune], { type: "application/javascript" });
         const url = URL.createObjectURL(blob);
 
-        const fileName = customUserText;
 
         const link = document.createElement('a');
         link.href = url;
-        link.download = fileName;
-        document.body.appendChild(link);
+        link.download = customUserText;
+        document.body.appendChild(link); // Append to body to make it clickable in some browsers
         link.click();
-        document.body.removeChild(link);
+        document.body.removeChild(link); // Clean up
         URL.revokeObjectURL(url);
     }
 
