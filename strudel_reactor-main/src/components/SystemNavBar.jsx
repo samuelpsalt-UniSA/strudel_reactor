@@ -11,7 +11,7 @@ const handleStrudel = (e) =>{
 };
 */
 
-export default function SystemNavBar({ourPlayButton, ourStopButton, onToggleEditor, isEditorVisible, onImportTune}){
+export default function SystemNavBar({ourPlayButton, ourStopButton, onToggleEditor, isEditorVisible, onImportTune, onExportTune}){
 
     const buttonText = isEditorVisible ? "Hide Editor" : "Show Editor";
 
@@ -26,6 +26,10 @@ export default function SystemNavBar({ourPlayButton, ourStopButton, onToggleEdit
             <button onClick={onImportTune}
             className="sticky-button">
                 Import Tune
+            </button>
+            <button onClick={onExportTune}
+                    className="sticky-button">
+                Export Tune
             </button>
 
 

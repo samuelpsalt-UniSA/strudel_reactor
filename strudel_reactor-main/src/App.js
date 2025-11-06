@@ -27,6 +27,8 @@ function App() {
 
     const [importAction, setImportAction] = useState(null);
 
+    const [exportAction, setExportAction] = useState(null);
+
 
     const toggleEditorVisibility = () => {
         setstrudelVisible(prev => !prev);
@@ -50,6 +52,7 @@ function App() {
                     onToggleEditor={toggleEditorVisibility}
                     isEditorVisible={isEditorVisible}
                     onImportTune={importAction}
+                    onExportTune={exportAction}
                 />
 
                 <StrudelReactor
@@ -58,6 +61,7 @@ function App() {
                     isVisible={isEditorVisible}
                     onToggleEditor={toggleEditorVisibility}
                     onImportTriggerReady={setImportAction}
+                    onExportTriggerReady={setExportAction}
                 />
 
 

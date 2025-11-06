@@ -11,7 +11,7 @@ import ComponentNavBar from "./ComponentNavBar";
 
 
 
-function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor, onImportTriggerReady}){
+function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor, onImportTriggerReady, onExportTriggerReady}){
     //const ourCanvas = useRef();
     const ourEditorRoot = useRef();
     const editorRef = useRef(null);
@@ -65,6 +65,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
                 );
                 await Promise.all([loadModules, registerSynthSounds(), registerSoundfonts()]);
 
+
             },
         });
 
@@ -101,6 +102,10 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
         if (onImportTriggerReady) {
             onImportTriggerReady(() => triggerFileInput);
         }
+        if (onExportTriggerReady) {
+            onExportTriggerReady(() => handleFileExport);
+        }
+
     }, []);
 
 
@@ -125,6 +130,24 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
             }
 
     };
+
+
+    const handleFileExport = () => {
+        const result = currentTune;
+        const customUserText = prompt("Name Your Strudel Script");
+        const blob = new Blob([currentTune], { type: "application/javascript" });
+        const url = URL.createObjectURL(blob);
+
+        const fileName = customUserText;
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
 
 
 
