@@ -15,6 +15,7 @@ import SystemNavBar from "./components/SystemNavBar";
 import StrudelReactor from "./components/StrudelReactor";
 import EmbedStrudel from "./components/EmbedStrudel";
 import {useState} from "react";
+import RandomQuoteGenerator from "./components/NewComponent";
 
 
 function App() {
@@ -39,7 +40,6 @@ function App() {
 
     return (
         <>
-            <div>
                 <SystemNavBar
                     ourPlayButton={playButtonRef}
                     ourStopButton={stopButtonRef}
@@ -47,29 +47,20 @@ function App() {
                     isEditorVisible={isEditorVisible}
                 />
                 <main>
-                    <div className="container-fluid">
                         <div className="row">
 
                             <div className="col-md-4">
-
+                                <StrudelReactor
+                                    ourPlayButton={playButtonRef}
+                                    ourStopButton={stopButtonRef}
+                                    isVisible={isEditorVisible}
+                                    onToggleEditor={toggleEditorVisibility}
+                                />
+                               
                             </div>
                         </div>
-                        <div className="row">
-                            <StrudelReactor
-                                ourPlayButton={playButtonRef}
-                                ourStopButton={stopButtonRef}
-                                isVisible={isEditorVisible}
-                                onToggleEditor={toggleEditorVisibility}
-                            />
-
-                            <div className="col-md-4">
-
-                            </div>
-                        </div>
-                    </div>
 
                 </main >
-            </div >
         </>
     )
 }
