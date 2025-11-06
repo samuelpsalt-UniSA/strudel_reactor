@@ -1,15 +1,5 @@
 import PlayButtons from "./PlayButtons";
-import {useState} from "react";
 
-
-
-
-/*
-const handleStrudel = (e) =>{
-    e.stopPropagation();
-    setstrudelVisible(true);
-};
-*/
 
 export default function SystemNavBar({ourPlayButton, ourStopButton, onToggleEditor, isEditorVisible, onImportTune, onExportTune}){
 

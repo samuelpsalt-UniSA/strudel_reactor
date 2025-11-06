@@ -10,7 +10,7 @@ import ComponentNavBar from "./ComponentNavBar";
 
 function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor, onImportTriggerReady,
                             onExportTriggerReady}){
-    //const ourCanvas = useRef();
+
     const ourEditorRoot = useRef();
     const editorRef = useRef(null);
     const fileInputRef = useRef(null);
@@ -21,7 +21,6 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
     const [currentTune, setCurrentTune] = useState(stranger_tune);
 
-    // let loadedTune = stranger_tune;
 
     useEffect(() => {
         //const canvas = ourCanvas.current;
@@ -29,21 +28,8 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
         const playButton = ourPlayButton.current;
         const stopButton = ourStopButton.current;
 
-        // if we can't find any of these, don't load
-        if (!editorRoot || !playButton || !stopButton) {
-            console.error("Could not find dom node");
-            return;
-        }
 
-        // this worked idk
-        /*
-                canvas.width = canvas.width * 2;
-                canvas.height = canvas.height * 2;
-                const drawContext = canvas.getContext('2d');
-                const drawTime = [-2, 2]; // time window of drawn haps
-
-        */
-        // to reload when importing new song input, also stops Codemirror duplicating for some reason
+        // to reset when importing new song input, also stops Codemirror duplicating for some reason
         editorRoot.innerHTML = '';
 
         const editor = new StrudelMirror({
@@ -52,8 +38,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
             transpiler,
             root: editorRoot,
             initialCode: currentTune,
-            //drawTime,
-            // onDraw: (haps, time) => drawPianoroll({ haps, time, ctx: drawContext, drawTime, fold: 0 }),
+
             prebake: async () => {
                 initAudioOnFirstClick(); // needed to make the browser happy (don't await this here..)
                 const loadModules = evalScope(

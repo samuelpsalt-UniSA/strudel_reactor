@@ -1,23 +1,8 @@
 import './App.css';
-import React, { useEffect, useRef } from "react";
-import { StrudelMirror } from '@strudel/codemirror';
-import { evalScope } from '@strudel/core';
-import { drawPianoroll } from '@strudel/draw';
-import { initAudioOnFirstClick } from '@strudel/webaudio';
-import { transpiler } from '@strudel/transpiler';
-import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/webaudio';
-import { registerSoundfonts } from '@strudel/soundfonts';
-import { stranger_tune } from './tunes';
-import console_monkey_patch, { getD3Data } from './console-monkey-patch';
-import procButtons from "./components/ProcButtons";
-import playButtons from "./components/PlayButtons";
+import React, { useRef } from "react";
 import SystemNavBar from "./components/SystemNavBar";
 import StrudelReactor from "./components/StrudelReactor";
-import EmbedStrudel from "./components/EmbedStrudel";
 import {useState} from "react";
-import RandomQuoteGenerator from "./components/NewComponent";
-import NewComponent from "./components/NewComponent";
-
 
 function App() {
     const playButtonRef = useRef(null);
@@ -30,10 +15,8 @@ function App() {
         setstrudelVisible(prev => !prev);
     };
 
-
     return (
         <>
-
                 <SystemNavBar
                     ourPlayButton={playButtonRef}
                     ourStopButton={stopButtonRef}
@@ -42,7 +25,6 @@ function App() {
                     onImportTune={importAction}
                     onExportTune={exportAction}
                 />
-
                 <StrudelReactor
                     ourPlayButton={playButtonRef}
                     ourStopButton={stopButtonRef}
@@ -51,8 +33,6 @@ function App() {
                     onImportTriggerReady={setImportAction}
                     onExportTriggerReady={setExportAction}
                 />
-
-
         </>
     )
 }

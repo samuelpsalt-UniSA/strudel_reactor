@@ -1,7 +1,4 @@
-
-
 function ComponentNavBar({title, onToggleEditor}) {
-
 
     return (
         <nav className="componentNav">
