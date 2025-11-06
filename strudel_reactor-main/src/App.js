@@ -22,25 +22,13 @@ import NewComponent from "./components/NewComponent";
 function App() {
     const playButtonRef = useRef(null);
     const stopButtonRef = useRef(null);
-
     const [isEditorVisible, setstrudelVisible] = useState(true);
-
     const [importAction, setImportAction] = useState(null);
-
     const [exportAction, setExportAction] = useState(null);
-
 
     const toggleEditorVisibility = () => {
         setstrudelVisible(prev => !prev);
     };
-
-    /*
-    const handleStrudel = (e) =>{
-        e.stopPropagation();
-        setstrudelVisible(true);
-    };
-    */
-
 
 
     return (

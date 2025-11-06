@@ -1,28 +1,27 @@
-import { StrudelMirror } from '@strudel/codemirror';
-import { evalScope } from '@strudel/core';
-import { initAudioOnFirstClick } from '@strudel/webaudio';
-import { transpiler } from '@strudel/transpiler';
-import { stranger_tune } from "../tunes";
-import console_monkey_patch, { getD3Data } from '../console-monkey-patch';
-import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/webaudio';
-import { registerSoundfonts } from '@strudel/soundfonts';
+import {StrudelMirror} from '@strudel/codemirror';
+import {evalScope} from '@strudel/core';
+import {getAudioContext, initAudioOnFirstClick, registerSynthSounds, webaudioOutput} from '@strudel/webaudio';
+import {transpiler} from '@strudel/transpiler';
+import {stranger_tune} from "../tunes";
+import {registerSoundfonts} from '@strudel/soundfonts';
 import {useEffect, useRef, useState} from "react";
 import ComponentNavBar from "./ComponentNavBar";
 
 
-
 function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor, onImportTriggerReady,
-onExportTriggerReady}){
+                            onExportTriggerReady}){
     //const ourCanvas = useRef();
     const ourEditorRoot = useRef();
     const editorRef = useRef(null);
     const fileInputRef = useRef(null);
     const [importPlay, setImportPlay] = useState(false);
 
+    const stringForFileExport = useRef(null);
+
 
     const [currentTune, setCurrentTune] = useState(stranger_tune);
 
-   // let loadedTune = stranger_tune;
+    // let loadedTune = stranger_tune;
 
     useEffect(() => {
         //const canvas = ourCanvas.current;
@@ -37,24 +36,24 @@ onExportTriggerReady}){
         }
 
         // this worked idk
-/*
-        canvas.width = canvas.width * 2;
-        canvas.height = canvas.height * 2;
-        const drawContext = canvas.getContext('2d');
-        const drawTime = [-2, 2]; // time window of drawn haps
+        /*
+                canvas.width = canvas.width * 2;
+                canvas.height = canvas.height * 2;
+                const drawContext = canvas.getContext('2d');
+                const drawTime = [-2, 2]; // time window of drawn haps
 
-*/
+        */
         // to reload when importing new song input, also stops Codemirror duplicating for some reason
-         editorRoot.innerHTML = '';
+        editorRoot.innerHTML = '';
 
-         const editor = new StrudelMirror({
+        const editor = new StrudelMirror({
             defaultOutput: webaudioOutput,
             getTime: () => getAudioContext().currentTime,
             transpiler,
             root: editorRoot,
             initialCode: currentTune,
             //drawTime,
-           // onDraw: (haps, time) => drawPianoroll({ haps, time, ctx: drawContext, drawTime, fold: 0 }),
+            // onDraw: (haps, time) => drawPianoroll({ haps, time, ctx: drawContext, drawTime, fold: 0 }),
             prebake: async () => {
                 initAudioOnFirstClick(); // needed to make the browser happy (don't await this here..)
                 const loadModules = evalScope(
@@ -87,6 +86,7 @@ onExportTriggerReady}){
         if (editorRef.current.setCode) {
             editorRef.current.clear();
             editorRef.current.setCode(currentTune);
+            stringForFileExport.current = currentTune;
             if (importPlay === true){
                 editorRef.current.evaluate();
             }
@@ -116,32 +116,32 @@ onExportTriggerReady}){
         const file = event.target.files[0];
 
 
-            const text = await file.text();
-            console.log(text);
+        const text = await file.text();
+        console.log(text);
 
 
-            if (text.trim()) {
-                console.log('tune load');
-                setCurrentTune(text);
-                setImportPlay(true);
-                console.log(importPlay);
-            } else {
-                console.error('error');
-            }
+        if (text.trim()) {
+            console.log('tune load');
+            setCurrentTune(text);
+            setImportPlay(true);
+            console.log(importPlay);
+        } else {
+            console.error('error');
+        }
 
     };
 
 
     const handleFileExport = () => {
-        const result = currentTune;
-        const customUserText = prompt("Name Your File")
-        const blob = new Blob([currentTune], { type: "application/javascript" });
+        //const customUserText = prompt("Name Your File")
+        const blob = new Blob([stringForFileExport.current], { type: "application/javascript" });
+        const fileName = prompt('Please enter a file name');
         const url = URL.createObjectURL(blob);
 
 
         const link = document.createElement('a');
         link.href = url;
-        link.download = customUserText;
+        link.download = fileName;
         document.body.appendChild(link); // Append to body to make it clickable in some browsers
         link.click();
         document.body.removeChild(link); // Clean up
@@ -176,4 +176,3 @@ onExportTriggerReady}){
 }
 
 export default StrudelReactor;
-
