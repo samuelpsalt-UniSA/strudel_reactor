@@ -25,11 +25,11 @@ const RandomQuoteGenerator = () => {
 
     return (
         <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
             fontFamily: 'Arial, sans-serif',
+            marginTop: '20em',
             textAlign: 'center',
-            padding: '20px',
-            maxWidth: '600px',
-            margin: '50px auto',
             border: '1px solid #ddd',
             borderRadius: '8px',
             boxShadow: '0 4px 8px rgba(0,0,0,0.1)'

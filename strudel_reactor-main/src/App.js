@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { StrudelMirror } from '@strudel/codemirror';
 import { evalScope } from '@strudel/core';
 import { drawPianoroll } from '@strudel/draw';
@@ -16,6 +16,7 @@ import StrudelReactor from "./components/StrudelReactor";
 import EmbedStrudel from "./components/EmbedStrudel";
 import {useState} from "react";
 import RandomQuoteGenerator from "./components/NewComponent";
+import NewComponent from "./components/NewComponent";
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
     const stopButtonRef = useRef(null);
 
     const [isEditorVisible, setstrudelVisible] = useState(true);
+
+    const [importAction, setImportAction] = useState(null);
 
 
     const toggleEditorVisibility = () => {
@@ -40,27 +43,24 @@ function App() {
 
     return (
         <>
+
                 <SystemNavBar
                     ourPlayButton={playButtonRef}
                     ourStopButton={stopButtonRef}
                     onToggleEditor={toggleEditorVisibility}
                     isEditorVisible={isEditorVisible}
+                    onImportTune={importAction}
                 />
-                <main>
-                        <div className="row">
 
-                            <div className="col-md-4">
-                                <StrudelReactor
-                                    ourPlayButton={playButtonRef}
-                                    ourStopButton={stopButtonRef}
-                                    isVisible={isEditorVisible}
-                                    onToggleEditor={toggleEditorVisibility}
-                                />
-                               
-                            </div>
-                        </div>
+                <StrudelReactor
+                    ourPlayButton={playButtonRef}
+                    ourStopButton={stopButtonRef}
+                    isVisible={isEditorVisible}
+                    onToggleEditor={toggleEditorVisibility}
+                    onImportTriggerReady={setImportAction}
+                />
 
-                </main >
+
         </>
     )
 }

@@ -3,7 +3,6 @@ import {useState} from "react";
 
 
 
-//const [strudelVisible, setstrudelVisible] = useState(false);
 
 /*
 const handleStrudel = (e) =>{
@@ -12,19 +11,25 @@ const handleStrudel = (e) =>{
 };
 */
 
-export default function SystemNavBar({ourPlayButton, ourStopButton, onToggleEditor, isEditorVisible}){
+export default function SystemNavBar({ourPlayButton, ourStopButton, onToggleEditor, isEditorVisible, onImportTune}){
 
     const buttonText = isEditorVisible ? "Hide Editor" : "Show Editor";
 
     return(
         <nav className="systemNavBar">
-            <h1 className="navH2" >Strudel Demo</h1>
+            <h1 className="navH2">Strudel Demo</h1>
             <button
                 className="sticky-button"
                 onClick={onToggleEditor}>
                 {buttonText}
             </button>
-            <PlayButtons playRef={ourPlayButton} stopRef={ourStopButton} />
+            <button onClick={onImportTune}
+            className="sticky-button">
+                Import Tune
+            </button>
+
+
+            <PlayButtons playRef={ourPlayButton} stopRef={ourStopButton}/>
         </nav>
     )
 }

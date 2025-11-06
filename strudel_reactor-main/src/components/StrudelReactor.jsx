@@ -1,6 +1,5 @@
 import { StrudelMirror } from '@strudel/codemirror';
 import { evalScope } from '@strudel/core';
-import { drawPianoroll } from '@strudel/draw';
 import { initAudioOnFirstClick } from '@strudel/webaudio';
 import { transpiler } from '@strudel/transpiler';
 import { stranger_tune } from "../tunes";
@@ -8,17 +7,21 @@ import console_monkey_patch, { getD3Data } from '../console-monkey-patch';
 import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/webaudio';
 import { registerSoundfonts } from '@strudel/soundfonts';
 import {useEffect, useRef, useState} from "react";
-import procButtons from "./ProcButtons";
-import PlayButtons from "./PlayButtons";
-import ProcButtons from "./ProcButtons";
-import SystemNavBar from "./SystemNavBar";
 import ComponentNavBar from "./ComponentNavBar";
 
 
-function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor}){
+
+function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor, onImportTriggerReady}){
     //const ourCanvas = useRef();
     const ourEditorRoot = useRef();
     const editorRef = useRef(null);
+    const fileInputRef = useRef(null);
+    const [importPlay, setImportPlay] = useState(false);
+
+
+    const [currentTune, setCurrentTune] = useState(stranger_tune);
+
+   // let loadedTune = stranger_tune;
 
     useEffect(() => {
         //const canvas = ourCanvas.current;
@@ -40,19 +43,22 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
         const drawTime = [-2, 2]; // time window of drawn haps
 
 */
-        const editor = new StrudelMirror({
+        // to reload when importing new song input, also stops Codemirror duplicating for some reason
+        editorRoot.innerHTML = '';
+
+         const editor = new StrudelMirror({
             defaultOutput: webaudioOutput,
             getTime: () => getAudioContext().currentTime,
             transpiler,
             root: editorRoot,
-            initialCode: stranger_tune,
+            initialCode: currentTune,
             //drawTime,
            // onDraw: (haps, time) => drawPianoroll({ haps, time, ctx: drawContext, drawTime, fold: 0 }),
             prebake: async () => {
                 initAudioOnFirstClick(); // needed to make the browser happy (don't await this here..)
                 const loadModules = evalScope(
                     import('@strudel/core'),
-                   //import('@strudel/draw'),
+                    import('@strudel/draw'),
                     import('@strudel/mini'),
                     import('@strudel/tonal'),
                     import('@strudel/webaudio'),
@@ -64,7 +70,11 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
         editorRef.current = editor;
 
+
+
+
         const handlePlay = () => editor.evaluate();
+        console.log(editor.code);
         const handleStop = () => editor.stop();
 
         playButton.addEventListener('click', handlePlay);
@@ -72,6 +82,51 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
 
     }, [ourPlayButton, ourStopButton]);
+
+    useEffect(() => {
+        if (editorRef.current.setCode) {
+            editorRef.current.clear();
+            editorRef.current.setCode(currentTune);
+            if (importPlay === true){
+                editorRef.current.evaluate();
+            }
+
+
+
+        }
+    }, [currentTune]);
+
+
+    useEffect(() => {
+        if (onImportTriggerReady) {
+            onImportTriggerReady(() => triggerFileInput);
+        }
+    }, []);
+
+
+    const triggerFileInput = () => {
+        fileInputRef.current?.click();
+    };
+
+    const handleFileImport = async (event) => {
+        const file = event.target.files[0];
+
+
+            const text = await file.text();
+            console.log(text);
+
+
+            if (text.trim()) {
+                console.log('tune load');
+                setCurrentTune(text);
+                setImportPlay(true);
+            } else {
+                console.error('error');
+            }
+
+    };
+
+
 
     const wrapperClass = `strudelWrapper ${isVisible ? '' : 'hidden'}`;
 
@@ -85,6 +140,14 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
                     isEditorVisible={isVisible}
                 />
                 <div id="editor" ref={ourEditorRoot} className="strudelComponent"/>
+
+                <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".js,.mjs, .json"
+                    onChange={handleFileImport}
+                    style={{ display: 'none' }}
+                />
             </div>
         </>
     )
