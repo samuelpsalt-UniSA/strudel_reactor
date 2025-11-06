@@ -133,8 +133,9 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
 
     const handleFileExport = () => {
-        //const customUserText = prompt("Name Your File")
-        const blob = new Blob([stringForFileExport.current], { type: "application/javascript" });
+        const editorCode = editorRef.current.code;
+
+        const blob = new Blob([editorCode], { type: "application/javascript" });
         const fileName = prompt('Please enter a file name');
         const url = URL.createObjectURL(blob);
 
@@ -142,9 +143,9 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
         const link = document.createElement('a');
         link.href = url;
         link.download = fileName;
-        document.body.appendChild(link); // Append to body to make it clickable in some browsers
+        document.body.appendChild(link);
         link.click();
-        document.body.removeChild(link); // Clean up
+        document.body.removeChild(link);
         URL.revokeObjectURL(url);
     }
 
