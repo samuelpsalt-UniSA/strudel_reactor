@@ -1,8 +1,8 @@
-function ComponentNavBar({title, onToggleEditor}) {
+function StrudelNavBar({onToggleEditor}) {
 
     return (
         <nav className="componentNav">
-            <p className="componentNavItem">{title}</p>
+            <p className="componentNavItem">Strudel Editor</p>
             <button
                 className="componentNavButton"
                 onClick={onToggleEditor}
@@ -11,4 +11,4 @@ function ComponentNavBar({title, onToggleEditor}) {
     )
 }
 
-export default ComponentNavBar;
+export default StrudelNavBar;

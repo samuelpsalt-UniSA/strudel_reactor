@@ -5,7 +5,7 @@ import {transpiler} from '@strudel/transpiler';
 import {stranger_tune} from "../tunes";
 import {registerSoundfonts} from '@strudel/soundfonts';
 import {useEffect, useRef, useState} from "react";
-import ComponentNavBar from "./ComponentNavBar";
+import StrudelNavBar from "./StrudelNavBar";
 
 
 function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor, onImportTriggerReady,
@@ -52,12 +52,14 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
 
             },
+
         });
+
 
         editorRef.current = editor;
 
 
-        const handlePlay = () => editor.evaluate();
+        const handlePlay = () => editorRef.current.evaluate();
         console.log(editor.code);
         const handleStop = () => editor.stop();
 
@@ -107,6 +109,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
         if (text.trim()) {
             console.log('tune load');
+            console.log(text);
             setCurrentTune(text);
             setImportPlay(true);
             console.log(importPlay);
@@ -142,8 +145,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
     return (
         <>
             <div className={wrapperClass}>
-                <ComponentNavBar
-                    title={"Strudel Editor"}
+                <StrudelNavBar
                     onToggleEditor={onToggleEditor}
                     isEditorVisible={isVisible}
                 />

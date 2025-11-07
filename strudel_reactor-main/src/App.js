@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import SystemNavBar from "./components/SystemNavBar";
 import StrudelReactor from "./components/StrudelReactor";
 import {useState} from "react";
+import D3Visualizer from "./components/D3Visualiser";
 
 function App() {
     const playButtonRef = useRef(null);
@@ -33,6 +34,8 @@ function App() {
                     onImportTriggerReady={setImportAction}
                     onExportTriggerReady={setExportAction}
                 />
+
+            <D3Visualizer />
         </>
     )
 }
