@@ -15,6 +15,19 @@
     color:white;
 }
 
+
+.D3-visualiser-wrapper{
+    width : 97.5vw;
+    height: 20vh;
+    position : absolute;
+    top : 70vh;
+    left : 1.25vw;
+}
+
+.D3-visualiser-content{
+    color:white;
+}
+
 body{
     background-image: url("./resources/bg-image.jpg");
     background-size: cover;
@@ -30,6 +43,23 @@ body{
 .playButtonDiv{
     display: flex;
     justify-content: space-between;
+}
+
+
+.controls-wrapper{
+    width : 45vw;
+    height : 20vh;
+    position : absolute;
+    top : 15vh;
+    left : 54vw;
+}
+
+.toBeNamed{
+    width : 50vw;
+    height : 20vh;
+    position : absolute;
+    top : 15vh;
+    left : 1.25vw;
 }
 
 .strudelWrapper{

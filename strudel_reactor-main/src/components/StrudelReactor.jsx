@@ -61,7 +61,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
         const handlePlay = () => editorRef.current.evaluate();
         console.log(editor.code);
-        const handleStop = () => editor.stop();
+        const handleStop = () => editorRef.current.stop();
 
         playButton.addEventListener('click', handlePlay);
         stopButton.addEventListener('click', handleStop);

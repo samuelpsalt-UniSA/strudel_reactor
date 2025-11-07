@@ -4,6 +4,8 @@ import SystemNavBar from "./components/SystemNavBar";
 import StrudelReactor from "./components/StrudelReactor";
 import {useState} from "react";
 import D3Visualizer from "./components/D3Visualiser";
+import Controls from "./components/Controls";
+import ToBeNamed from "./components/ToBeNamedComponent";
 
 function App() {
     const playButtonRef = useRef(null);
@@ -36,6 +38,8 @@ function App() {
                 />
 
             <D3Visualizer />
+            <Controls />
+            <ToBeNamed />
         </>
     )
 }
