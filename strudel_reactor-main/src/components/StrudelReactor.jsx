@@ -18,6 +18,8 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
     const stringForFileExport = useRef(null);
 
+    let wrapperClass = `strudelWrapper ${isVisible ? '' : 'hidden'}`;
+
 
     const [currentTune, setCurrentTune] = useState(stranger_tune);
 
@@ -76,6 +78,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
             stringForFileExport.current = currentTune;
             if (importPlay === true){
                 editorRef.current.evaluate();
+                wrapperClass = `strudelWrapper ${isVisible ? '' : 'hidden'}`;
             }
 
         }
@@ -136,10 +139,6 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
     }
-
-
-
-    const wrapperClass = `strudelWrapper ${isVisible ? '' : 'hidden'}`;
 
 
     return (
