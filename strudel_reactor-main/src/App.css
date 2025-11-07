@@ -1,0 +1,230 @@
+.App {
+  text-align: center;
+    background-color: gray;
+
+}
+
+.hidden {
+    opacity: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+}
+
+.App-h2{
+    color:white;
+}
+
+
+.D3-visualiser-wrapper{
+    width : 97.5vw;
+    height: 20vh;
+    position : absolute;
+    top : 70vh;
+    left : 1.25vw;
+}
+
+.D3-visualiser-content{
+    color:white;
+}
+
+body{
+    background-image: url("./resources/bg-image.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.textToStyle{
+    color:white;
+}
+
+.playButtonDiv{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.controls-wrapper{
+    width : 45vw;
+    height : 20vh;
+    position : absolute;
+    top : 15vh;
+    left : 54vw;
+}
+
+.toBeNamed{
+    width : 50vw;
+    height : 20vh;
+    position : absolute;
+    top : 15vh;
+    left : 1.25vw;
+}
+
+.strudelWrapper{
+    opacity: 1;
+    max-height: 200vw;
+    width : 90vw;
+    visibility: visible;
+
+
+    transition:
+            opacity 0.3s ease-in,
+            max-height 0.5s ease-in-out,
+            visibility 0.5s;
+
+    position: absolute;
+    top: 5%;
+    left: 5.5%;
+    z-index: 11;
+
+
+
+}
+
+.componentNavButton {
+    margin-right: 2em;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+.strudelComponent{
+    height: 80vh;
+    overflow-y: auto;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+}
+
+.systemNav{
+    display: flex;
+}
+
+.systemNavBar{
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    left: 1%;
+    right: 1%;
+    display: flex;
+
+    z-index: 10;
+    border-radius: 25px;
+    margin-top: 1em;
+
+}
+
+.componentNav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.13);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+
+}
+
+.componentNavItem{
+    color: white;
+    margin-left: 2em;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.genericPlaceHolder{
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.sticky-button{
+    margin-top: 1em;
+    margin-right: 2em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    color: white;
+    cursor: pointer;
+
+
+    background: rgba(255, 255, 255, 0.15);
+    /*box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);*/
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+
+    transition: background 0.3s ease;
+}
+
+/*
+.sticky-button-right{
+    position: fixed;
+    z-index: 1000; /* Ensure it stays on top of other content
+    right: 200px;
+}
+
+*/
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+nav{
+
+    background: rgba(255, 255, 255, 0.13);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.navH2{
+    color: white;
+    margin-left: 1em;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
