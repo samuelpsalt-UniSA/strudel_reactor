@@ -5,7 +5,7 @@ import {transpiler} from '@strudel/transpiler';
 import {stranger_tune} from "../tunes";
 import {registerSoundfonts} from '@strudel/soundfonts';
 import {useEffect, useRef, useState} from "react";
-import ComponentNavBar from "./ComponentNavBar";
+import StrudelNavBar from "./StrudelNavBar";
 
 
 function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor, onImportTriggerReady,
@@ -17,6 +17,8 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
     const [importPlay, setImportPlay] = useState(false);
 
     const stringForFileExport = useRef(null);
+
+    let wrapperClass = `strudelWrapper ${isVisible ? '' : 'hidden'}`;
 
 
     const [currentTune, setCurrentTune] = useState(stranger_tune);
@@ -52,14 +54,16 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
 
             },
+
         });
+
 
         editorRef.current = editor;
 
 
-        const handlePlay = () => editor.evaluate();
+        const handlePlay = () => editorRef.current.evaluate();
         console.log(editor.code);
-        const handleStop = () => editor.stop();
+        const handleStop = () => editorRef.current.stop();
 
         playButton.addEventListener('click', handlePlay);
         stopButton.addEventListener('click', handleStop);
@@ -74,6 +78,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
             stringForFileExport.current = currentTune;
             if (importPlay === true){
                 editorRef.current.evaluate();
+                wrapperClass = `strudelWrapper ${isVisible ? '' : 'hidden'}`;
             }
 
         }
@@ -107,6 +112,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
         if (text.trim()) {
             console.log('tune load');
+            console.log(text);
             setCurrentTune(text);
             setImportPlay(true);
             console.log(importPlay);
@@ -135,15 +141,10 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
     }
 
 
-
-    const wrapperClass = `strudelWrapper ${isVisible ? '' : 'hidden'}`;
-
-
     return (
         <>
             <div className={wrapperClass}>
-                <ComponentNavBar
-                    title={"Strudel Editor"}
+                <StrudelNavBar
                     onToggleEditor={onToggleEditor}
                     isEditorVisible={isVisible}
                 />

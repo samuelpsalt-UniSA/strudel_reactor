@@ -15,6 +15,19 @@
     color:white;
 }
 
+
+.D3-visualiser-wrapper{
+    width : 97.5vw;
+    height: 20vh;
+    position : absolute;
+    top : 70vh;
+    left : 1.25vw;
+}
+
+.D3-visualiser-content{
+    color:white;
+}
+
 body{
     background-image: url("./resources/bg-image.jpg");
     background-size: cover;
@@ -30,6 +43,23 @@ body{
 .playButtonDiv{
     display: flex;
     justify-content: space-between;
+}
+
+
+.controls-wrapper{
+    width : 45vw;
+    height : 20vh;
+    position : absolute;
+    top : 15vh;
+    left : 54vw;
+}
+
+.toBeNamed{
+    width : 50vw;
+    height : 20vh;
+    position : absolute;
+    top : 15vh;
+    left : 1.25vw;
 }
 
 .strudelWrapper{
@@ -93,9 +123,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.13);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(50px);
+    backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-top-left-radius: 25px;
@@ -113,6 +143,14 @@ body{
   pointer-events: none;
 }
 
+.genericPlaceHolder{
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 .sticky-button{
     margin-top: 1em;
     margin-right: 2em;
@@ -125,12 +163,12 @@ body{
 
 
     background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    /*box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);*/
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
 
-    /* Optional: Hover effect */
+
     transition: background 0.3s ease;
 }
 

@@ -7,7 +7,7 @@ export default function SystemNavBar({ourPlayButton, ourStopButton, onToggleEdit
 
     return(
         <nav className="systemNavBar">
-            <h1 className="navH2">Strudel Demo</h1>
+            <h1 className="navH2">Strudel REPL</h1>
             <div className="systemNav">
                 <div className="systemNavItem1">
                     <button
