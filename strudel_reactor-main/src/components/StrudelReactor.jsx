@@ -4,25 +4,40 @@ import {getAudioContext, initAudioOnFirstClick, registerSynthSounds, webaudioOut
 import {transpiler} from '@strudel/transpiler';
 import {stranger_tune} from "../tunes";
 import {registerSoundfonts} from '@strudel/soundfonts';
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import StrudelNavBar from "./StrudelNavBar";
 import console_monkey_patch, {getD3Data, subscribe, unsubscribe} from './console-monkey-patch';
 
 
 
 function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor, onImportTriggerReady,
-                            onExportTriggerReady}){
+                            onExportTriggerReady, D3State}){
 
     const ourEditorRoot = useRef();
     const editorRef = useRef(null);
     const fileInputRef = useRef(null);
     const [importPlay, setImportPlay] = useState(false);
-
     const stringForFileExport = useRef(null);
-
     let wrapperClass = `strudelWrapper ${isVisible ? '' : 'hidden'}`;
-
     const [currentTune, setCurrentTune] = useState(stranger_tune);
+    const intervalRef = useRef(null);
+
+
+    const clearD3 = () => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+    };
+
+    const sendD3 = () => {
+        clearD3();
+        intervalRef.current = setInterval(() => {
+            const data = getD3Data();
+            D3State(data);
+           // console.log(data)
+        }, 100);
+    };
 
 
 
@@ -71,20 +86,17 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
         const handlePlay = () => {
             const currentCode = editorRef.current.code;
             if (!currentCode.includes('\n all(x => x.log())')) {
-                editorRef.current.setCode(currentCode + '\n all(x => x.log())');
+                editorRef.current.setCode(currentCode + '\nall(x => x.log())');
             }
             editorRef.current.evaluate()
-
-
-            // Don't check immediately - wait for data to accumulate
-            setTimeout(() => {
-                const data = getD3Data();
-                console.log('D3 Data after play:', data);
-            }, 1000); // Wait 1 second for some data to accumulate
+            sendD3();
         }
 
 
-        const handleStop = () => editorRef.current.stop();
+        const handleStop = () => {
+            editorRef.current.stop();
+            clearD3();
+        }
 
         playButton.addEventListener('click', handlePlay);
         stopButton.addEventListener('click', handleStop);
@@ -99,7 +111,8 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
             stringForFileExport.current = currentTune;
             if (importPlay === true){
                 editorRef.current.evaluate();
-                console.log(getD3Data());
+
+                sendD3();
                 wrapperClass = `strudelWrapper ${isVisible ? '' : 'hidden'}`;
             }
 

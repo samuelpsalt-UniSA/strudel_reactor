@@ -15,6 +15,12 @@ function App() {
     const [importAction, setImportAction] = useState(null);
     const [exportAction, setExportAction] = useState(null);
 
+    const [d3Data, setD3Data] = useState([]);
+
+    const handleD3Data = (dataArray) => {
+        setD3Data(dataArray);
+    };
+
     const toggleEditorVisibility = () => {
         setstrudelVisible(prev => !prev);
     };
@@ -36,8 +42,9 @@ function App() {
                 onToggleEditor={toggleEditorVisibility}
                 onImportTriggerReady={setImportAction}
                 onExportTriggerReady={setExportAction}
+                D3State={handleD3Data}
             />
-            <D3Visualizer />
+            <D3Visualizer D3Input={d3Data} />
             <Controls />
             <ToBeNamed />
 
