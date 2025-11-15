@@ -7,6 +7,7 @@ import D3Visualizer from "./components/D3Visualiser";
 import Controls from "./components/Controls";
 import ToBeNamed from "./components/ToBeNamedComponent";
 
+
 function App() {
     const playButtonRef = useRef(null);
     const stopButtonRef = useRef(null);
@@ -28,18 +29,18 @@ function App() {
                     onImportTune={importAction}
                     onExportTune={exportAction}
                 />
-                <StrudelReactor
-                    ourPlayButton={playButtonRef}
-                    ourStopButton={stopButtonRef}
-                    isVisible={isEditorVisible}
-                    onToggleEditor={toggleEditorVisibility}
-                    onImportTriggerReady={setImportAction}
-                    onExportTriggerReady={setExportAction}
-                />
-
+            <StrudelReactor
+                ourPlayButton={playButtonRef}
+                ourStopButton={stopButtonRef}
+                isVisible={isEditorVisible}
+                onToggleEditor={toggleEditorVisibility}
+                onImportTriggerReady={setImportAction}
+                onExportTriggerReady={setExportAction}
+            />
             <D3Visualizer />
             <Controls />
             <ToBeNamed />
+
         </>
     )
 }
