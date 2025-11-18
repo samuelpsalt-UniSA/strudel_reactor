@@ -5,7 +5,10 @@ import StrudelReactor from "./components/StrudelReactor";
 import {useState} from "react";
 import D3Visualizer from "./components/D3Visualiser";
 import Controls from "./components/Controls";
-import ToBeNamed from "./components/ToBeNamedComponent";
+import StyleControls from "./components/styleThemeControls";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {
@@ -46,7 +49,8 @@ function App() {
             />
             <D3Visualizer D3Input={d3Data} />
             <Controls />
-            <ToBeNamed />
+            <StyleControls />
+
 
         </>
     )

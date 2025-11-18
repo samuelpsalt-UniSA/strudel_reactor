@@ -10,8 +10,8 @@ import console_monkey_patch, {getD3Data, subscribe, unsubscribe} from './console
 
 
 
-function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor, onImportTriggerReady,
-                            onExportTriggerReady, D3State}){
+function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEditor, onImportTriggerReady
+                            ,onExportTriggerReady, D3State}){
 
     const ourEditorRoot = useRef();
     const editorRef = useRef(null);
@@ -36,7 +36,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
             const data = getD3Data();
             D3State(data);
            // console.log(data)
-        }, 100);
+        }, );
     };
 
 
@@ -85,9 +85,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
         const handlePlay = () => {
             const currentCode = editorRef.current.code;
-            if (!currentCode.includes('\n all(x => x.log())')) {
-                editorRef.current.setCode(currentCode + '\nall(x => x.log())');
-            }
+            editorRef.current.setCode(currentCode + '\n all(x => x.log())');
             editorRef.current.evaluate()
             sendD3();
         }
@@ -110,8 +108,9 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
             editorRef.current.setCode(currentTune);
             stringForFileExport.current = currentTune;
             if (importPlay === true){
+                editorRef.current.setCode(currentTune + '\nall(x => x.log())');
                 editorRef.current.evaluate();
-
+                setImportPlay(false);
                 sendD3();
                 wrapperClass = `strudelWrapper ${isVisible ? '' : 'hidden'}`;
             }

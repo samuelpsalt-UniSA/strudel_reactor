@@ -1,11 +1,14 @@
 import NavBar from "./ComponenetNav"
 import {useEffect, useState} from "react";
+import * as d3 from "d3";
 
 function D3Visualiser({ D3Input }) {
 
-    useEffect(() => {
-        console.log('D3Input updated:', D3Input);
-    }, [D3Input]);
+    const maxItems = 600;
+    const timeOut = 500;
+    //const maxValue = Math.Max();
+
+    console.log(D3Input);
 
 
 
@@ -14,10 +17,8 @@ function D3Visualiser({ D3Input }) {
             <>
                 <div className="D3-visualiser-wrapper">
                     <NavBar title="D3 Visualiser"/>
-                    <div className="App container">
-                        <h1>RNG OutPut: ()</h1>
-                        <svg width="100%" height="100%"
-                             className="border border-primary rounded p-2"></svg>
+                    <div className="glass-light">
+                        <svg></svg>
                     </div>
 
                 </div>
