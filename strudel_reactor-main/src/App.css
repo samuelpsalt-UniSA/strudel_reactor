@@ -108,6 +108,7 @@ body{
 
 }
 
+
 .componentNavButton {
     margin-right: 2em;
     background: rgba(255, 255, 255, 0.15);
@@ -176,7 +177,62 @@ body{
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.sticky-button{
+#sticky-button{
+    margin-top: 1em;
+    margin-right: 2em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    color: white;
+    cursor: pointer;
+
+
+    background: rgba(255, 255, 255, 0.15);
+    /*box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);*/
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+
+    transition: background 0.3s ease;
+}
+
+#gainSelc{
+    color: black;
+}
+
+
+.volumeWrapper{
+    width: 23vw;
+}
+
+.form-label{
+    color: white;
+}
+
+#play{
+    margin-top: 1em;
+    margin-right: 2em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    color: white;
+    cursor: pointer;
+
+
+    background: rgba(255, 255, 255, 0.15);
+    /*box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);*/
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+
+    transition: background 0.3s ease;
+}
+
+#stop{
     margin-top: 1em;
     margin-right: 2em;
     padding: 10px 20px;
@@ -242,7 +298,6 @@ nav{
 
 .navH2{
     color: white;
-    margin-left: 1em;
 }
 
 @keyframes App-logo-spin {

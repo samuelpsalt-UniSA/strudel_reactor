@@ -8,7 +8,24 @@ function D3Visualiser({ D3Input }) {
     const timeOut = 500;
     //const maxValue = Math.Max();
 
-    console.log(D3Input);
+    const [items, setItems] = useState([]);
+
+    function logToNum(input){
+        if (!input) {return 0};
+        var stringArray = input.split(/(\s+)/);
+
+        for (const item of stringArray){
+            if  (item.startsWith('gain')){
+                let val = item.substring(5)
+                return Number(val)
+            }
+        }
+        return 0;
+    }
+
+    useEffect(() => {
+        setItems(D3Input)
+    }, [D3Input]);
 
 
 
@@ -19,6 +36,7 @@ function D3Visualiser({ D3Input }) {
                     <NavBar title="D3 Visualiser"/>
                     <div className="glass-light">
                         <svg></svg>
+                        <p color={"white"}>Param Count: {items}</p>
                     </div>
 
                 </div>

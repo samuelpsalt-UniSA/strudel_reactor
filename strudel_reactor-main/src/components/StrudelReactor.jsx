@@ -83,9 +83,13 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
         editorRef.current = editor;
 
 
+
         const handlePlay = () => {
-            const currentCode = editorRef.current.code;
-            editorRef.current.setCode(currentCode + '\n all(x => x.log())');
+            setCurrentTune(editorRef.current.code);
+            editorRef.current.clear();
+            //editorRef.current.setCode("");
+            //editorRef.current.setCode(currentCode + '\nall(x => x.log())')
+            initAudioOnFirstClick();
             editorRef.current.evaluate()
             sendD3();
         }
@@ -93,6 +97,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
 
         const handleStop = () => {
             editorRef.current.stop();
+            editorRef.current.clear();
             clearD3();
         }
 
@@ -100,7 +105,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
         stopButton.addEventListener('click', handleStop);
 
 
-    }, [ourPlayButton, ourStopButton]);
+        }, [ourPlayButton, ourStopButton]);
 
     useEffect(() => {
         if (editorRef.current.setCode) {
@@ -109,6 +114,7 @@ function StrudelReactor({ ourPlayButton, ourStopButton, isVisible, onToggleEdito
             stringForFileExport.current = currentTune;
             if (importPlay === true){
                 editorRef.current.setCode(currentTune + '\nall(x => x.log())');
+                initAudioOnFirstClick();
                 editorRef.current.evaluate();
                 setImportPlay(false);
                 sendD3();

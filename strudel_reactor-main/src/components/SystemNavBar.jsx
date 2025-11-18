@@ -13,6 +13,11 @@ export default function SystemNavBar({ourPlayButton, ourStopButton, onToggleEdit
         onImportTune();
         setTimeout(() => setImportAlert(true), 3000);
 
+
+        setTimeout(() => {
+            setImportAlert(false);
+        }, 10000);
+
     }
 
     const setImportAllertFalse = () => {
@@ -25,19 +30,26 @@ export default function SystemNavBar({ourPlayButton, ourStopButton, onToggleEdit
         <>
             <nav className="systemNavBar">
                 <h1 className="navH2">Strudel REPL</h1>
+                <div className="volumeWrapper">
+                    <label htmlFor="customRange2" className="form-label">Volume Control</label>
+                    <input type="range" className="form-range" min="0" max="5" id="customRange2"/>
+                </div>
+
                 <div className="systemNav">
                     <div className="systemNavItem1">
                         <button
-                            className="sticky-button"
+                            className="btn btn-primary"
+                            id="sticky-button"
                             onClick={onToggleEditor}>
                             {buttonText}
                         </button>
-                        <button onClick={onImportClick}
-                                className="sticky-button">
+                        <button className="btn btn-primary" onClick={onImportClick}
+                                id="sticky-button">
                             Import Tune
                         </button>
-                        <button onClick={onExportTune}
-                                className="sticky-button">
+                        <button className="btn btn-primary"
+                                onClick={onExportTune}
+                                id="sticky-button">
                             Export Tune
                         </button>
                     </div>
